@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "store/*": ["src/store/*"],
+      "styles/*": ["src/styles/*"],
+      "utils/*": ["src/utils/*"],
+      "assets/*": ["src/app/assets/*"],
+      "locales/*": ["src/locales/*"],
+      "pages/*": ["src/pages/*"],
+      "types": ["src/types"],
+      "app/*": ["src/app/*"],
+      "react": ["./node_modules/@types/react"]
+    }
+  },
+  "include": ["./src/**/*.tsx", "./src/**/*.ts", "jest.config.js"],
+  "exclude": ["dist", "build", "./src/**/*.test.ts", "./src/**/*.test.tsx"]
+}

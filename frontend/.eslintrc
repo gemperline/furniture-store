@@ -1,0 +1,65 @@
+{
+    "plugins": ["prettier", "i18next", "tss-unused-classes"],
+    "extends": ["airbnb-typescript", "react-app", "prettier"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "warnOnUnsupportedTypeScriptVersion": false
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            }
+        }
+    },
+    "rules": {
+        "object-curly-spacing": ["warn", "always"],
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "none"
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "none"
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": [
+            "warn",
+            {
+                "ignoreRestArgs": true
+            }
+        ],
+        "max-len": [
+            "warn",
+            {
+                "code": 120,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreComments": true
+            }
+        ],
+        "no-plusplus": [
+            "warn",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "@typescript-eslint/dot-notation": "warn",
+        "@typescript-eslint/no-shadow": "warn",
+        "@typescript-eslint/lines-between-class-members": "warn",
+        "@typescript-eslint/naming-convention": ["warn"],
+        "@typescript-eslint/return-await": "warn",
+        "import/no-extraneous-dependencies": ["warn"],
+        "@typescript-eslint/no-loop-func": ["warn"],
+        "i18next/no-literal-string": ["warn"],
+        "react/jsx-key": ["warn"],
+        "tss-unused-classes/unused-classes": ["warn"]
+    },
+    "root": true
+}
