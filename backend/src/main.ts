@@ -27,7 +27,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Furniture Store API')
     .setDescription(
-      'API documentation for your luxury furniture eCommerce backend',
+      'API documentation for a luxury furniture eCommerce backend',
     )
     .setVersion('1.0')
     .build();
