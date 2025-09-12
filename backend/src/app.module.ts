@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
-import { SeedService } from './seed/seed.service'; // ✅ Import the seed service
-import { Product } from './products/product.entity'; // ✅ Import the entity for injection
+import { SeedService } from './seed/seed.service';
+import { Product } from './products/product.entity';
 import { Department } from './departments/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
-import { ProductImage } from './productImages/product-image.entity'; // Import ProductImage entity if needed
-import { ProductImagesModule } from './productImages/product-image.module'; // Import ProductImagesModule if needed
+import { ProductImage } from './productImages/product-image.entity'; 
+import { ProductImagesModule } from './productImages/product-image.module';
 import { ProductReviewsModule } from './productReviews/product-reviews.module';
 
 @Module({

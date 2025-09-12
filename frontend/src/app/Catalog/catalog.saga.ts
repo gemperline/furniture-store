@@ -10,7 +10,7 @@ import {
   getProducts,
   getProductsByDepartmentId,
   getReviewsByProductId,
-} from 'store/service/serviceRequests ';
+} from 'app/services/serviceRequests ';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { httpSuccess } from 'utils/helpers';
 
