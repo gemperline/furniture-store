@@ -259,7 +259,7 @@ export const Navbar = () => {
             className={classes.companyName}
             onClick={() => history.push('/')}
           >
-            {'Modern Magic'}
+            {'Supersheek'}
           </Grid>
           <Grid className={classes.rightMenu}>
             <IconButton className={classes.iconBtn}>
