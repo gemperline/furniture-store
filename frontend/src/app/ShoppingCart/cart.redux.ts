@@ -41,7 +41,7 @@ const slice = createSlice({
     decrementQuantity: (state, action: PayloadAction<{ id: number }>) => {
       const item = state.items.find((i) => i.id === action.payload.id);
       if (item) {
-        item.quantity = item.quantity - 1;
+        item.quantity = (item.quantity || 0) - 1;
         if (item.quantity <= 0) {
           state.items = state.items.filter((i) => i.id !== action.payload.id);
         }
