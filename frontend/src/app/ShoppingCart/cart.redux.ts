@@ -36,7 +36,7 @@ const slice = createSlice({
     },
     incrementQuantity: (state, action: PayloadAction<{ id: number }>) => {
       const item = state.items.find((i) => i.id === action.payload.id);
-      if (item) item.quantity += 1;
+      if (item) item.quantity = (item.quantity || 0) + 1;
     },
     decrementQuantity: (state, action: PayloadAction<{ id: number }>) => {
       const item = state.items.find((i) => i.id === action.payload.id);
