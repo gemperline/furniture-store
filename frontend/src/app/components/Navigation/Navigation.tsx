@@ -287,7 +287,13 @@ export const Navbar = () => {
             {'Modern Magic'}
           </Grid>
           <Grid className={classes.rightMenu}>
-            <IconButton className={classes.iconBtn} aria-label="Shopping Cart">
+            <IconButton
+              className={classes.iconBtn}
+              aria-label="Shopping Cart"
+              onClick={() => {
+                handleNavigate({ path: '/shopping-cart' });
+              }}
+            >
               {cartItems.length > 0 ? (
                 <Badge
                   variant="dot"
