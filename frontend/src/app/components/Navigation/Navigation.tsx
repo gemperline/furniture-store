@@ -268,7 +268,11 @@ export const Navbar = () => {
       >
         <Grid className={classes.navBar}>
           <Grid className={classes.leftMenu}>
-            <IconButton className={classes.iconBtn} onClick={toggleMenuOpen}>
+            <IconButton
+              className={classes.iconBtn}
+              onClick={toggleMenuOpen}
+              aria-label="Menu"
+            >
               {open ? (
                 <CloseIcon className={classes.navIcon} />
               ) : (
@@ -283,7 +287,7 @@ export const Navbar = () => {
             {'Modern Magic'}
           </Grid>
           <Grid className={classes.rightMenu}>
-            <IconButton className={classes.iconBtn}>
+            <IconButton className={classes.iconBtn} aria-label="Shopping Cart">
               {cartItems.length > 0 ? (
                 <Badge
                   variant="dot"
@@ -298,7 +302,7 @@ export const Navbar = () => {
               )}
             </IconButton>
 
-            <IconButton className={classes.iconBtn}>
+            <IconButton className={classes.iconBtn} aria-label="Account">
               <AccountCircleIcon className={classes.navIcon} />
             </IconButton>
           </Grid>
