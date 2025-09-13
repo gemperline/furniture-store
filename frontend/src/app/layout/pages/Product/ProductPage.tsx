@@ -27,6 +27,11 @@ import { catalogSaga, catalogTrackerKeys } from 'app/Catalog/catalog.saga';
 import { usePromiseTracker } from 'react-promise-tracker';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import StarIcon from '@mui/icons-material/Star';
+import {
+  cartActions,
+  cartReducer,
+  cartSliceKey,
+} from 'app/ShoppingCart/cart.redux';
 
 const useStyles = makeStyles<{ isSmallScreen }>()(
   (theme, { isSmallScreen }) => ({
@@ -116,6 +121,8 @@ export const ProductPage = ({ id }: { id: number }) => {
   const dispatch = useDispatch();
   useInjectReducer({ key: catalogSliceKey, reducer: catalogReducer });
   useInjectSaga({ key: catalogSliceKey, saga: catalogSaga });
+  useInjectReducer({ key: cartSliceKey, reducer: cartReducer });
+  // useInjectSaga({ key: cartSliceKey, saga: cartSaga });
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const { classes } = useStyles({ isSmallScreen });
@@ -215,7 +222,17 @@ export const ProductPage = ({ id }: { id: number }) => {
               </Grid>
             </Box>
             <Box display="flex" alignItems="center" justifyContent={'center'}>
-              <Button variant="contained" className={classes.addToCartBtn}>
+              <Button
+                variant="contained"
+                className={classes.addToCartBtn}
+                onClick={() => {
+                  dispatch(
+                    cartActions.addItem({
+                      ...selectedProduct,
+                    })
+                  );
+                }}
+              >
                 <Grid className={classes.addToCartInner}>Add to Cart</Grid>
               </Button>
             </Box>

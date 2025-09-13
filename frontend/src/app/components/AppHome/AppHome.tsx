@@ -30,14 +30,10 @@ export const AppHome: React.FC = () => {
   const dispatch = useDispatch();
 
   // Dynamically inject catalog state + saga
-  useInjectReducer({ key: catalogSliceKey, reducer: catalogReducer });
-  useInjectSaga({ key: catalogSliceKey, saga: catalogSaga });
+  // useInjectReducer({ key: catalogSliceKey, reducer: catalogReducer });
+  // useInjectSaga({ key: catalogSliceKey, saga: catalogSaga });
 
   // const { items, loading, error } = useSelector((state: any) => state.products);
-
-  useEffect(() => {
-    dispatch(catalogActions.getProducts());
-  }, [dispatch]);
 
   return (
     <Grid className={classes.pageContainer}>

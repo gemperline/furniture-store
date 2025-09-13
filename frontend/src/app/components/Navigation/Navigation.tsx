@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
 import {
+  Badge,
   Box,
   Button,
   ClickAwayListener,
@@ -26,6 +27,13 @@ import { keyframes } from 'tss-react';
 import { PrivateComponent } from '../Common/PrivateComponent/PrivateComponent';
 import { breadcrumbActions } from '../Common/BreadcrumbNavigation/BreadcrumbNavigation.redux';
 import { useHistory } from 'react-router-dom';
+import {
+  cartItemsSelector,
+  cartReducer,
+  cartSliceKey,
+} from 'app/ShoppingCart/cart.redux';
+import { useInjectReducer } from 'redux-injectors';
+import { theme } from 'styles/global-styles';
 
 const slideDown = keyframes`
   from {
@@ -107,6 +115,7 @@ const useStyles = makeStyles<{ open: boolean }>()((theme: Theme, props) => ({
   },
   navIcon: {
     background: 'none',
+    zIndex: 2,
   },
   divider: {
     background: 'rgba(231,110,73,1)',
@@ -174,9 +183,20 @@ const useStyles = makeStyles<{ open: boolean }>()((theme: Theme, props) => ({
       boxShadow: 'inset 0 5px 5px -5px rgba(0, 0, 0, 0.8)',
     },
   },
+  cartBadge: {
+    width: 12,
+    height: 12,
+    minWidth: 12,
+    borderRadius: '50%',
+    top: 4,
+    right: 4,
+    translate: '-8px -2px',
+    zIndex: 1,
+  },
 }));
 
 export const Navbar = () => {
+  useInjectReducer({ key: cartSliceKey, reducer: cartReducer });
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = useState<boolean>(false);
@@ -184,6 +204,7 @@ export const Navbar = () => {
   const { t } = useTranslation();
   const { navigationMenu, navigationExpanded, selectedMenu } =
     useSelector(selectNavigationMenu);
+  const cartItems = useSelector(cartItemsSelector);
 
   const toggleMenuOpen = () => {
     setOpen((prev) => !prev);
@@ -247,7 +268,11 @@ export const Navbar = () => {
       >
         <Grid className={classes.navBar}>
           <Grid className={classes.leftMenu}>
-            <IconButton className={classes.iconBtn} onClick={toggleMenuOpen}>
+            <IconButton
+              className={classes.iconBtn}
+              onClick={toggleMenuOpen}
+              aria-label="Menu"
+            >
               {open ? (
                 <CloseIcon className={classes.navIcon} />
               ) : (
@@ -262,10 +287,28 @@ export const Navbar = () => {
             {'Supersheek'}
           </Grid>
           <Grid className={classes.rightMenu}>
-            <IconButton className={classes.iconBtn}>
-              <ShoppingCartIcon className={classes.navIcon} />
+            <IconButton
+              className={classes.iconBtn}
+              aria-label="Shopping Cart"
+              onClick={() => {
+                handleNavigate({ path: '/shopping-cart' });
+              }}
+            >
+              {cartItems.length > 0 ? (
+                <Badge
+                  variant="dot"
+                  color="warning"
+                  overlap="circular"
+                  classes={{ badge: classes.cartBadge }}
+                >
+                  <ShoppingCartIcon className={classes.navIcon} />
+                </Badge>
+              ) : (
+                <ShoppingCartIcon className={classes.navIcon} />
+              )}
             </IconButton>
-            <IconButton className={classes.iconBtn}>
+
+            <IconButton className={classes.iconBtn} aria-label="Account">
               <AccountCircleIcon className={classes.navIcon} />
             </IconButton>
           </Grid>
