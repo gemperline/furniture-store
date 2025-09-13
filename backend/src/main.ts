@@ -45,7 +45,7 @@ async function bootstrap() {
   ) {
     console.log('is swagger open?', globalThis.__SWAGGER_OPENED__);
     globalThis.__SWAGGER_OPENED__ = true;
-    openurl.open(`http://localhost:${port}/api`);
+    // openurl.open(`http://localhost:${port}/api`);
   }
 }
 bootstrap();

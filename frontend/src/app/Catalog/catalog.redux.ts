@@ -1,10 +1,4 @@
-// src/store/products/products.slice.ts
-import {
-  createAction,
-  createSelector,
-  createSlice,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CatalogState } from './types';
 import { IProduct } from 'app/models/Product/product';
 
