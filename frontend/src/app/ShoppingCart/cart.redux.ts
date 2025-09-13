@@ -18,7 +18,7 @@ const slice = createSlice({
     setItems: (state, action: PayloadAction<ICartItem[]>) => {
       state.items = action.payload.map((item) => ({
         ...item,
-        quantity: 1,
+        quantity: item.quantity || 1,
       }));
     },
     addItem: (state, action: PayloadAction<ICartItem>) => {
