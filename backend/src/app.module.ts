@@ -6,9 +6,10 @@ import { SeedService } from './seed/seed.service';
 import { Product } from './products/product.entity';
 import { Department } from './departments/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
-import { ProductImage } from './productImages/product-image.entity'; 
+import { ProductImage } from './productImages/product-image.entity';
 import { ProductImagesModule } from './productImages/product-image.module';
 import { ProductReviewsModule } from './productReviews/product-reviews.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ProductReviewsModule } from './productReviews/product-reviews.module';
     ProductImagesModule,
     ProductReviewsModule,
     DepartmentsModule,
+    PaymentsModule,
     TypeOrmModule.forFeature([Product]), // Needed so the SeedService can use ProductRepo
   ],
   providers: [SeedService], // Register the seeder

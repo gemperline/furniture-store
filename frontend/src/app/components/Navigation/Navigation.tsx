@@ -27,11 +27,7 @@ import { keyframes } from 'tss-react';
 import { PrivateComponent } from '../Common/PrivateComponent/PrivateComponent';
 import { breadcrumbActions } from '../Common/BreadcrumbNavigation/BreadcrumbNavigation.redux';
 import { useHistory } from 'react-router-dom';
-import {
-  cartItemsSelector,
-  cartReducer,
-  cartSliceKey,
-} from 'app/ShoppingCart/cart.redux';
+import { cartItemsSelector, cartReducer, cartSliceKey } from 'app/ShoppingCart/cart.redux';
 import { useInjectReducer } from 'redux-injectors';
 import { theme } from 'styles/global-styles';
 
@@ -165,9 +161,7 @@ const useStyles = makeStyles<{ open: boolean }>()((theme: Theme, props) => ({
         `} 150ms linear 1 normal forwards`,
   },
   menuList: {
-    animation: props.open
-      ? `${slideDown} 300ms ease-in-out forwards`
-      : `${slideUp} 300ms ease-in-out forwards`,
+    animation: props.open ? `${slideDown} 300ms ease-in-out forwards` : `${slideUp} 300ms ease-in-out forwards`,
     overflow: 'hidden',
   },
   firstListItem: {
@@ -202,12 +196,11 @@ export const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { classes, cx } = useStyles({ open });
   const { t } = useTranslation();
-  const { navigationMenu, navigationExpanded, selectedMenu } =
-    useSelector(selectNavigationMenu);
+  const { navigationMenu, navigationExpanded, selectedMenu } = useSelector(selectNavigationMenu);
   const cartItems = useSelector(cartItemsSelector);
 
   const toggleMenuOpen = () => {
-    setOpen((prev) => !prev);
+    setOpen(prev => !prev);
   };
 
   const closeMenu = () => {
@@ -217,17 +210,12 @@ export const Navbar = () => {
     }
   };
 
-  const handleNavigate = (item) => {
+  const handleNavigate = item => {
     /**Reset action to remove existing page breadcrumbs */
     dispatch(breadcrumbActions.reset());
     // dispatch(globalSearchActions.setDrawerData({ open: false, data: undefined }));
     if (item.path) history.push(item.path);
-    else if (item.pushState)
-      window.history.pushState(
-        null,
-        '',
-        `${window.location.pathname}${item.pushState}`
-      );
+    else if (item.pushState) window.history.pushState(null, '', `${window.location.pathname}${item.pushState}`);
   };
 
   const menuItemClicked = (menuItem: INavigation) => {
@@ -239,10 +227,7 @@ export const Navbar = () => {
       // dispatch(globalSearchActions.setShowPreferenceFilterDropdown(true));
       // if (!['recentHistory', 'settings'].includes(menuItem?.key))
       //   dispatch(navigationActions.setSelectedSubMenu(undefined));
-      if (
-        selectedMenu?.key !== menuItem.key &&
-        !['recentHistory', 'settings'].includes(menuItem?.key)
-      )
+      if (selectedMenu?.key !== menuItem.key && !['recentHistory', 'settings'].includes(menuItem?.key))
         dispatch(navigationActions.setSelectedMenu(menuItem));
       if (menuItem.key === 'home') {
         // dispatch(globalSearchActions.setSearchOptions(initialSearchAttributes));
@@ -261,29 +246,16 @@ export const Navbar = () => {
     <ClickAwayListener onClickAway={closeMenu}>
       <Paper
         classes={{
-          root: `${classes.navMenu} ${
-            open ? classes.drawer : classes.drawerCollapse
-          }`,
+          root: `${classes.navMenu} ${open ? classes.drawer : classes.drawerCollapse}`,
         }}
       >
         <Grid className={classes.navBar}>
           <Grid className={classes.leftMenu}>
-            <IconButton
-              className={classes.iconBtn}
-              onClick={toggleMenuOpen}
-              aria-label="Menu"
-            >
-              {open ? (
-                <CloseIcon className={classes.navIcon} />
-              ) : (
-                <MenuIcon className={classes.navIcon} />
-              )}
+            <IconButton className={classes.iconBtn} onClick={toggleMenuOpen} aria-label="Menu">
+              {open ? <CloseIcon className={classes.navIcon} /> : <MenuIcon className={classes.navIcon} />}
             </IconButton>
           </Grid>
-          <Grid
-            className={classes.companyName}
-            onClick={() => history.push('/')}
-          >
+          <Grid className={classes.companyName} onClick={() => history.push('/')}>
             {'Supersheek'}
           </Grid>
           <Grid className={classes.rightMenu}>
@@ -291,16 +263,11 @@ export const Navbar = () => {
               className={classes.iconBtn}
               aria-label="Shopping Cart"
               onClick={() => {
-                handleNavigate({ path: '/shopping-cart' });
+                handleNavigate({ path: '/cart' });
               }}
             >
               {cartItems.length > 0 ? (
-                <Badge
-                  variant="dot"
-                  color="warning"
-                  overlap="circular"
-                  classes={{ badge: classes.cartBadge }}
-                >
+                <Badge variant="dot" color="warning" overlap="circular" classes={{ badge: classes.cartBadge }}>
                   <ShoppingCartIcon className={classes.navIcon} />
                 </Badge>
               ) : (
@@ -381,11 +348,7 @@ const NavMenuItem = ({ open, ...props }) => {
       // })}
       onClick={handleListItemClick}
     >
-      <Grid
-        container
-        wrap="nowrap"
-        style={{ marginLeft: '0px', display: 'block' }}
-      >
+      <Grid container wrap="nowrap" style={{ marginLeft: '0px', display: 'block' }}>
         <Grid item>
           <div
             id={`navigation-expandable-${index}`}
@@ -409,11 +372,7 @@ const NavMenuItem = ({ open, ...props }) => {
                 //   [classes.menuItemClickable]: menuItem.clickable !== false,
                 // })}
               >
-                <ListItemText
-                  primaryTypographyProps={{ className: classes.font }}
-                >
-                  {menuItem.tag}
-                </ListItemText>
+                <ListItemText primaryTypographyProps={{ className: classes.font }}>{menuItem.tag}</ListItemText>
                 {/* {menuItem.subMenu && (
                         <Box
                           onClick={() => {
